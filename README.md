@@ -23,7 +23,7 @@ This includes code that does the following:
 * places the agents at a random starting point wihtin the environment
 * randomly moves the sheep using control-flow statements
 * makes the sheep eat the environment to increase their food stores
-* makes the sheep share food stores depending on their distance (calculated using pythagoras theorem) to nearby sheep in a a neighbourhood size, as defined in the final model
+* makes the sheep share food stores depending on their distance to nearby sheep in a given neighbourhood size (defined in the final model)
 
 #### assignment.py
 
