@@ -1,6 +1,6 @@
 # GEOG5990: Assignment 1- Agent-based Modelling
 
-### This repository contains the work developed during the practical sessions associated with the 'programming for geographical information analysis' module. This work has been produced in a python console, using the Spyder application.
+#### This repository contains the work developed during the practical sessions associated with the 'programming for geographical information analysis' module. This work has been produced in a python console, using the Spyder application. This README file will provide a brief overview of what files are included in this repository, what these files are and do, how the model can be run, issues encountered in the model, tests completed to ensure model functionality and finally opportunities for future development. 
 
 Overall, this work aims to present an animation of the movement of sheep around an environment, modelling their eating behvaiour and how the sheep share their food stores. Through excellent documentation, useful comments and a simple structure, this model should:
 
@@ -13,7 +13,7 @@ Overall, this work aims to present an animation of the movement of sheep around 
 * contains the model within a graphical user interface (GUI)
 * be initialised using data from the internet
 
-### This model contains two python files, one that deals with agents and one that executes the model
+### Repository contents
 
 #### agentframeworkassignment.py
 
@@ -37,6 +37,12 @@ These variables include:
 * **num_of_steps**: how many times agents will be run through the for-loop within the update function that sets the animation
 
 The model includes a stopping condition that will enable the animation to stop running once the agents have a certain amount of food in their stores.
+
+#### in.txt
+
+This file is a text file which contains the environment data. This was read into the model to enable to environment to be plotted and the agents to interact with it
+
+### Issues encountered when running the model
 
 One issue encountered in the model is that when the animation begins running, the agents are all located in the bottom left-corner of the plot. While they do move around the environment as the animation continues, it is unclear why they exhibit this behaviour. This issue arose when the scale of plot was changed. Inititally, the x and y axis were set to start at 0 and end at 100. Once the animation was working this was changed so that the axes represented the length of the environment.
 
