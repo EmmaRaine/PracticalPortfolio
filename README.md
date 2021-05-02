@@ -47,3 +47,7 @@ This file is a text file which contains the environment data. This was read into
 One issue encountered in the model is that when the animation begins running, the agents are all located in the bottom left-corner of the plot. While they do move around the environment as the animation continues, it is unclear why they exhibit this behaviour. This issue arose when the scale of plot was changed. Inititally, the x and y axis were set to start at 0 and end at 100. Once the animation was working this was changed so that the axes represented the length of the environment.
 
 Additionally, while this is not necessarily an issue, there is some inconvenience when running the model in the GUI. To run the model in a GUI, the Spyder IPython console should to be set to Tkinter. To do this, under the graphics menu in the IPython tab under the tools menu, the backend has to be changed to TKinter. The console then has to be restarted to run the model in GUI, which if it works effectively should produce a pop-up box which contains a menu. In this menu, the model button has to be pressed followed by run model, in order to run the animation in the GUI. The TKinter backend also produces a few issues within the IPython console such as slowing down the programme or not running the code. Mostly, this can be rectified by running "%gui tk" through the console.
+
+### Model testing
+
+### Future development
