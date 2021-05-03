@@ -37,7 +37,7 @@ These variables include:
 * **num_of_steps**: how many times agents will be run through the for-loop within the update function that sets the animation
 
 
-This code will run continually as an animation until a stopping condition, which suggests the sheep’s stores are full, is met. This animation can be viewed in a graphical user interface (GUI) by using the menu to select ‘run model’.
+This code will run continually as an animation until a stopping condition, which suggests the sheep’s stores are full, is met.  At this point, the IPython console should print 'Stopping condition'. This animation can be viewed in a graphical user interface (GUI). When the model is run a seperate window should appear. This should contain a menu with the word model and a dropdown list that says run model. If this is selected the model should run in this GUI window. 
 
 #### in.txt
 
@@ -49,7 +49,7 @@ One issue encountered in the model is that when the animation begins running, th
 
 A further issue with the model is that when the model is run in the GUI, a seperate, blank figure opens at the same time as the GUI window. This is not and error with the code but a problem that arises when using spyder to run a GUI, thus could not be rectified. It is likely that in another application this would not be an issue, although this has not been tested. Nonetheless, this isssue is nothing more than a minor inconvenience and does not cause any problems.
 
-Finally, while this is not necessarily an issue, there is some inconvenience when running the model in the GUI. To run the model in a GUI, the Spyder IPython console should to be set to Tkinter. To do this, the backend of the IPython console should be changed to TKinter. To do this on spyder go to tools > Ipython console > graphics > backend > TKinter. The console then has to be restarted to run the model in GUI, which if it works effectively should produce a pop-up box which contains a menu. In this menu, the model button has to be pressed followed by run model, in order to run the animation in the GUI. The TKinter backend also produces a few issues within the IPython console such as slowing down the programme or not running the code. Mostly, this can be rectified by running "%gui tk" through the console. The model can be run without the GUI to avoid some of this inconvenience using the automatic backend and commenting out lines ... to ... and commenting in lines ... to ... This just opens the animation and runs it automatically in a seperate window.
+Finally, while this is not necessarily an issue, there is some inconvenience when running the model in the GUI. To run the model in a GUI, the Spyder IPython console should to be set to Tkinter. To do this, the backend of the IPython console should be changed to TKinter. To do this on spyder go to tools > Ipython console > graphics > backend > TKinter. The console then has to be restarted to run the model in the GUI. The TKinter backend also produces a few issues within the IPython console such as slowing down the programme or not running the code. Mostly, this can be rectified by running "%gui tk" through the console. The model can be run without the GUI to avoid some of this inconvenience using the automatic backend and commenting out lines ... to ... and commenting in lines ... to ... This just opens the animation and runs it automatically in a seperate window.
 
 ### Model testing
 
