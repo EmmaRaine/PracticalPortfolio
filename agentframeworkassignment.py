@@ -25,11 +25,11 @@ class Agent():
         self._x = random.randint(0, ncols-1) 
         self._y = random.randint(0, nrows-1)
         if (x == None):
-            self._x = random.randint(0,300)
+            self._x = random.randint(0, 300)
         else:
             self._x = x
         if (y == None):
-            self._y = random.randint(0,300)
+            self._y = random.randint(0, 300)
         else:
             self._y = y
 

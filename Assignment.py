@@ -200,33 +200,29 @@ carry_on = True
 
 def update(frame_number):
     global carry_on 
-    fig.clear()   
-    if True:
-        random.shuffle (agents)
-        for j in range(num_of_steps):
-            for i in range(num_of_agents):
-                agents[i].move()
-                agents[i].move_faster()
-                agents[i].eat()
-                agents[i].share_with_neighbours(neighbourhood)
+    fig.clear()  
+    # Create a new empty variable within the function, to store how much the agents have eaten
+    agent_count = 0           
+    #if True:
+    random.shuffle (agents)
+    for j in range(num_of_steps):
+        for i in range(num_of_agents):
+            agents[i].move()
+            agents[i].move_faster()
+            agents[i].eat()
+            agents[i].share_with_neighbours(neighbourhood)
                 
-                
-# This second for-loop creates a new variable within the function, setting the agent_count of each agent to zero, still within the update
-# function. 
-               
-            for i in range(num_of_agents):
-                agent_count = 0
-                
-# Within this loop, the code that follows uses if statements, containing a block of code that evaluates a condition. 
-# This checks the agent store of each agent and if the agent store exceeds 50, the agent_count variable increases by 1. Additionally, 
-# if the agent_count variable is equal to the num_of_agents then the global carry_on variable becomes false, which prints a 
-# stopping condition to stop the model running. 
+        
+# Create a for-loop to test how much each agent has eaten. This checks the agent store of each agent and if the agent store exceeds 50, 
+# the agent_count variable increases by 1. Additionally, if the agent_count variable is equal to the num_of_agents then the global carry_on 
+# variable becomes false, which prints a stopping condition to stop the model running. 
 
-                if agents[i].store > 50:
-                        agent_count += 1
-                if agent_count == (num_of_agents):
-                    carry_on = False
-                    print("stopping condition")
+        for i in range(num_of_agents):
+            if agents[i].store > 50:
+                agent_count += 1
+        if agent_count == (num_of_agents):
+            carry_on = False
+            print("stopping condition")
                 
 # The following code will use the matplotlib.pyplot function (imported as plt) to plot the environment data, along with the location of 
 # each agent (using for i in range) as a scatter graph, still inside the update function. If statements determine the color of agents
