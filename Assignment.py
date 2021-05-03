@@ -206,7 +206,7 @@ def update(frame_number):
         for j in range(num_of_steps):
             for i in range(num_of_agents):
                 agents[i].move()
-                #agents[i].move_faster()
+                agents[i].move_faster()
                 agents[i].eat()
                 agents[i].share_with_neighbours(neighbourhood)
                 
