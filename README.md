@@ -27,7 +27,7 @@ This includes code that does the following:
 
 #### assignment.py
 
-This file is responsible for running the agent-based model allowing, ultimately, the animation to be shown within a GUI. This includes a number of adaptable variables that can be changed to reflect different agent behaviours.
+This file is responsible for running the agent-based model allowing, ultimately, the animation to be shown within a GUI. This includes a number of adaptable variables that can be changed to reflect and represent different sheep behaviours, creating a flexible model. To change these variables, the number to which they are assigned can be altered.
 
 These variables include:
 
@@ -36,7 +36,8 @@ These variables include:
 * **neighbourhood**: the distance between the sheep before they start sharing their food stores
 * **num_of_steps**: how many times agents will be run through the for-loop within the update function that sets the animation
 
-The model includes a stopping condition that will enable the animation to stop running once the agents have a certain amount of food in their stores.
+
+This code will run continually as an animation until a stopping condition, which suggests the sheep’s stores are full, is met. This animation can be viewed in a graphical user interface (GUI) by using the menu to select ‘run model’.
 
 #### in.txt
 
