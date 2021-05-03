@@ -54,12 +54,14 @@ Finally, while this is not necessarily an issue, there is some inconvenience whe
 ### Model testing
 
 The print() function was used to test the model. Throughout the code, this function was used to print a specified message to the screen. This ensured that what was expected of certain functions, methods and variables was returned in the model. This reveals what is going on inside the code to ensure it was running as it should be. 
+
 In additon to using the print() function, the built-in debugger menu in spyder was used after any additions or alterations to the code in order to 'debug' it. This enabled what is going on in the program to be identified.
 
 ### Future development
 
 While this model encapsulates a few different behaviours of the sheep within the environment, there are still other options for enhancing the model further. 
 This model speeds up the agents as they increase their stores and makes the agents stop eating once they are full. However, further model enhancement could include making agents steal more resources from other agents if their stores are low, which could be done through adapting the share with neighbours function in agentframeworkassignment.py.
+
 Additionally, the model could add in a new type of agent such as introducing a predator to eat nearby sheep. This would involve developing another agent class for the preadator and defining within that a series of functions that would allow them to move around the environment, eat the environment and eat nearby sheep. 
 
 This is just two examples of how the model could be enhanced although there are many more options such as creating a complete population model inckuding breeding of sheep and wolves.
