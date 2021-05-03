@@ -132,7 +132,7 @@ agents = []
 
 # Create a new variable (num_of_agents) to assign how many agents there will be. 
 
-num_of_agents = 10
+num_of_agents = 50
 
 # Create a new variable (num_of_iterations) to move the agent coordinates an arbitary number of times. 
 
@@ -206,6 +206,7 @@ def update(frame_number):
         for j in range(num_of_steps):
             for i in range(num_of_agents):
                 agents[i].move()
+                #agents[i].move_faster()
                 agents[i].eat()
                 agents[i].share_with_neighbours(neighbourhood)
                 
@@ -223,7 +224,7 @@ def update(frame_number):
 
                 if agents[i].store > 50:
                         agent_count += 1
-                if (agent_count == num_of_agents):
+                if agent_count == (num_of_agents):
                     carry_on = False
                     print("stopping condition")
                 
@@ -231,16 +232,17 @@ def update(frame_number):
 # each agent (using for i in range) as a scatter graph, still inside the update function. If statements determine the color of agents
 # dependent on their stores. Agents with stores less than 12000 should be red, agents with stores greater than 12000 should be blue.
 
-    plt.ylim(0, 100)
-    plt.xlim(0, 100)
     plt.imshow(environment)
+    plt.ylim(0, len(environment[0]))
+    plt.xlim(0, len(environment))
+    plt.title("Agent-based Model of Sheep Moving within an Environment")
+    plt.ylabel("Environment")
+    plt.xlabel("Environment")
     for i in range(num_of_agents):
         if agents[i].store < 15000:
-            plt.scatter(agents[i]._x,agents[i]._y, color='blue')
+            plt.scatter(agents[i]._x,agents[i]._y, color='blue') 
         if agents[i].store > 15000:
-            plt.scatter(agents[i]._x,agents[i]._y, color='red')
-    
-        
+            plt.scatter(agents[i]._x,agents[i]._y, color='red')     
                     
 # Print the first set of agents in the list to ensure everything is working as it should be
 
@@ -254,11 +256,15 @@ def gen_function(b = [0]):
     while (a < num_of_iterations) & (carry_on) :
         yield a			# Returns control and awaits next call.
         a += 1               
-        
+    
+
+#animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+#plt.show()
+
 # The following code creates a function to run an animation. This uses the FuncAnimation function in the animation module to create an 
 # animation by repeatedly calling upon the update function. This uses the generator function to pass data in each frame of the animation. 
-# canvas.draw() from the tkinter function to draw this animation within the canvas. The animation should stop running when the sequence 
-# of frames is complete as repeat is set to False. 
+# canvas.draw() from the tkinter function is usedto draw this animation within the canvas. The animation should stop running when the 
+# sequence of frames is complete as repeat is set to False. 
 
 def run():
     animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
@@ -293,6 +299,9 @@ print("time = " + str(end - start))
 # This final line of code sets the GUI waiting for events and should allow the GUI to run the model effectively. 
 
 tkinter.mainloop()
+
+
+
 
 
 

@@ -17,20 +17,21 @@ import random
 
 class Agent():
     def __init__(self, environment, agents, y=None, x=None):
+        nrows = len(environment)
+        ncols = len(environment[0])
         self.environment = environment
         self.agents = agents
         self.store = 0 
-        self._x = random.randint(0,99) 
-        self._y = random.randint(0,99)
+        self._x = random.randint(0, ncols-1) 
+        self._y = random.randint(0, nrows-1)
         if (x == None):
-            self._x = random.randint(0,100)
+            self._x = random.randint(0,300)
         else:
             self._x = x
         if (y == None):
-            self._y = random.randint(0,100)
+            self._y = random.randint(0,300)
         else:
             self._y = y
-
 
 # The following code makes a move() method within the Agent class. The code will randomly alter the self.x and self.y coordinates using 
 # control flow (if-else) statements. 
@@ -38,9 +39,10 @@ class Agent():
 # The if statement contains a block of code that evaluates a condition and makes a choice. An else statement contains the block of code that 
 # executes, if the condition in the if statement is not met.
 
-# This code will generate a random floating number between 0 and 1 using the random.random() function from the random module. The  
-# code should random walk the coordinates 1 step depending on which conditions are met; if random.random() is less than 0.5 
-# self.x/self.y coordinates will increase by 1 and if random.random() is greater than 0.5 self.x/self.y coordiantes will decrease by 1. 
+# If the store of each agent is less than 50, this code will generate a random floating number between 0 and 1 using the random.random() 
+# function from the random module. The code should random walk the coordinates 1 step depending on which conditions are met; 
+# if random.random() is less than 0.5 self.x/self.y coordinates will increase by 1 and if random.random() is greater than 0.5
+# self.x/self.y coordiantes will decrease by 1. 
 
 # To deal with boundary issues, a common solution is to allow points leaving the top of an area to come in at the bottom and leaving 
 # left, come in on the right (making the space into a Torus). The following code uses the modulus operator (%) which gives and 
@@ -48,17 +50,31 @@ class Agent():
 
 
     def move(self):
-        if random.random() < 0.5:
-            self._x = (self._x + 1) % 100
-        else:
-            self._x = (self._x - 1) % 100
-
-        if random.random() < 0.5:
-            self._y = (self._y + 1) % 100
-        else:
-            self._y = (self._y - 1) % 100
-            
+        if self.store < 50:
+            if random.random() < 0.5:
+                self._x = (self._x + 1) % 300
+            else:
+                self._x = (self._x - 1) % 300
     
+            if random.random() < 0.5:
+                self._y = (self._y + 1) % 300
+            else:
+                self._y = (self._y - 1) % 300
+ 
+# ADD COMMENT HERE    
+                
+    def move_faster(self):
+        if self.store >= 50:
+            if random.random() < 0.5:
+                self._x = (self._x + 5) % 300
+            else:
+                self._x = (self._x - 5) % 300
+    
+            if random.random() < 0.5:
+                self._y = (self._y + 5) % 300
+            else:
+                self._y = (self._y - 5) % 300
+
 # The following code makes an eat() method within the Agent class. This code will allow the environment data to be altered. 
 # If self.x and self.y are greater than 10 then the environment will lose 10, which will be added to the store. This allows the agents to 
 # edit the environment.
@@ -67,6 +83,7 @@ class Agent():
         if self.environment[self._y][self._x] > 10:
             self.environment[self._y][self._x] -= 10
             self.store += 10
+
 
 # The following code makes a share_with_neighbours() method within the Agent class. This code will allow the agent to call upon the 
 # method to check their neighbourhood; essentially, this will allow the agent to search for close neighbours and share resources with them. 
@@ -83,8 +100,7 @@ class Agent():
                 agent.store = average
                 # the following code prints the code above to test that it is working
                 #print("sharing " + str(dist) + " " + str(average))
-                
-                
+                          
                 
 # The following code calculates the euclidean/straight-line distance to each of the agents using pythagoras theorem
     
