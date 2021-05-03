@@ -17,19 +17,19 @@ import random
 
 class Agent():
     def __init__(self, environment, agents, y=None, x=None):
-        nrows = len(environment)
-        ncols = len(environment[0])
+        #nrows = len(environment)
+        #ncols = len(environment[0])
         self.environment = environment
         self.agents = agents
         self.store = 0 
-        self._x = random.randint(0, ncols-1) 
-        self._y = random.randint(0, nrows-1)
+        self._x = random.randint(0, len(environment[0])) 
+        self._y = random.randint(0, len(environment))
         if (x == None):
-            self._x = random.randint(0, 300)
+            self._x = random.randint(0, len(environment[0]))
         else:
             self._x = x
         if (y == None):
-            self._y = random.randint(0, 300)
+            self._y = random.randint(0, len(environment))
         else:
             self._y = y
 
@@ -50,7 +50,7 @@ class Agent():
 
 
     def move(self):
-        if self.store < 50:
+        if self.store < 200:
             if random.random() < 0.5:
                 self._x = (self._x + 1) % 300
             else:
@@ -64,7 +64,7 @@ class Agent():
 # ADD COMMENT HERE    
                 
     def move_faster(self):
-        if self.store >= 50:
+        if self.store >= 200:
             if random.random() < 0.5:
                 self._x = (self._x + 5) % 300
             else:
@@ -83,6 +83,15 @@ class Agent():
         if self.environment[self._y][self._x] > 10:
             self.environment[self._y][self._x] -= 10
             self.store += 10
+
+# ADD COMMENT HERE
+
+    def full(self):
+        if self.store > 5000:
+            full = 1
+        else: 
+            full = 0
+        return full
 
 
 # The following code makes a share_with_neighbours() method within the Agent class. This code will allow the agent to call upon the 

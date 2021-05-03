@@ -132,7 +132,7 @@ agents = []
 
 # Create a new variable (num_of_agents) to assign how many agents there will be. 
 
-num_of_agents = 50
+num_of_agents = 60
 
 # Create a new variable (num_of_iterations) to move the agent coordinates an arbitary number of times. 
 
@@ -140,7 +140,7 @@ num_of_iterations = 100
 
 # Create a new variable (num_of_steps) to set how many times agents will be run through loops.
 
-num_of_steps = 50
+num_of_steps = 1
 
 # Create a new variable (neighbourhood) to allow agents to search for close neighbours within the distance attached to this variable (20).
 
@@ -203,9 +203,9 @@ def update(frame_number):
     fig.clear()  
     # Create a new empty variable within the function, to store how much the agents have eaten
     agent_count = 0           
-    #if True:
-    random.shuffle (agents)
-    for j in range(num_of_steps):
+    if True:
+        random.shuffle (agents)
+        #for j in range(num_of_steps):
         for i in range(num_of_agents):
             agents[i].move()
             agents[i].move_faster()
@@ -218,12 +218,15 @@ def update(frame_number):
 # variable becomes false, which prints a stopping condition to stop the model running. 
 
         for i in range(num_of_agents):
-            if agents[i].store > 50:
+            agent_eaten_enough = agents[i].full()
+            if agent_eaten_enough == 1:
                 agent_count += 1
+                # Test this works
+                #print("Agent", agents[i], "is full, store is: {}".format(agents[i].store))
         if agent_count == (num_of_agents):
             carry_on = False
             print("stopping condition")
-                
+            
 # The following code will use the matplotlib.pyplot function (imported as plt) to plot the environment data, along with the location of 
 # each agent (using for i in range) as a scatter graph, still inside the update function. If statements determine the color of agents
 # dependent on their stores. Agents with stores less than 12000 should be red, agents with stores greater than 12000 should be blue.
@@ -235,9 +238,9 @@ def update(frame_number):
     plt.ylabel("Environment")
     plt.xlabel("Environment")
     for i in range(num_of_agents):
-        if agents[i].store < 15000:
+        if agents[i].store < 600:
             plt.scatter(agents[i]._x,agents[i]._y, color='blue') 
-        if agents[i].store > 15000:
+        if agents[i].store > 600:
             plt.scatter(agents[i]._x,agents[i]._y, color='red')     
                     
 # Print the first set of agents in the list to ensure everything is working as it should be
@@ -254,8 +257,8 @@ def gen_function(b = [0]):
         a += 1               
     
 
-#animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
-#plt.show()
+animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+plt.show()
 
 # The following code creates a function to run an animation. This uses the FuncAnimation function in the animation module to create an 
 # animation by repeatedly calling upon the update function. This uses the generator function to pass data in each frame of the animation. 
