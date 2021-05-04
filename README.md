@@ -2,7 +2,7 @@
 
 #### This repository contains the work developed during the practical sessions associated with the 'programming for geographical information analysis' module. This work has been produced in a python console, using the Spyder application. This README file will provide a brief overview of what files are included in this repository, what these files are and do, how the model can be run, issues encountered in the model, tests completed to ensure model functionality and finally opportunities for future development. 
 
-Overall, this work aims to present an animation of the movement of sheep around an environment, modelling their eating behvaiour and how the sheep share their food stores. This model should:
+Overall, this work aims to present an animation of the movement of sheep around an environment, modelling different behaviours. This model should:
 
 * build agents in a space
 * get agents to interact with each other
@@ -23,7 +23,7 @@ This includes code that does the following:
 * places the agents at a random starting point within the environment
 * randomly moves the sheep around the environment using control-flow statements
 * makes the sheep move faster when they have more energy (greater amount of food in their stores)
-* makes the sheep eat the environment to increase their food stores
+* makes the sheep eat the environment to increase food stores
 * makes the sheep full when they have a certain amount of food stores
 * makes the sheep share food stores depending on their distance to nearby sheep in a given neighbourhood size (defined in the final model)
 
@@ -45,11 +45,11 @@ This file is a text file which contains the environment data. This was read into
 
 ### Issues encountered when running the model
 
-One issue encountered when developing the model was that when the animation began running, agents were all located in the bottom left-corner of the plot. While they moved around the environment as the animation continued, it was unclear why they exhibit this behaviour. This issue arose when agents were intialised using web data. It was later realised that web data contained x and y values from 0 to 100, opposed to 0 to 300, the length of the environment. Therefore, agents were restricted at first within these constraints. To solve this, where x and y variables were created using data from the web in the model, these lines of code were multiplied by 3. This ensured that agents initialised using web data were on a scale of 0 to 300, to match the size of the environment.
+One issue encountered when developing the model was that when the animation began running, agents were all located in the bottom left-corner of the plot. While they moved around the environment as the animation continued, it was unclear why they exhibited this behaviour. This issue arose when agents were intialised using web data. It was later realised that web data contained x and y values from 0 to 100, opposed to 0 to 300, the length of the environment. Therefore, agents were restricted at first within these constraints. To solve this, where x and y variables were created using data from the web in the model, these lines of code were multiplied by 3. This ensured that agents initialised using web data were on a scale of 0 to 300, to match the size of the environment.
 
-A further issue with the model is that when the model is run in the GUI, a seperate, blank figure opens at the same time as the GUI window. This is not and error with the code but a problem that arises when using spyder to run a GUI, thus could not be rectified. It is likely that in another application this would not be an issue, although this has not been tested. Nonetheless, this isssue is nothing more than a minor inconvenience and does not cause any problems.
+A further issue with the model is that when the model is run in the GUI, a seperate, blank figure opens at the same time as the GUI window. This is not an error with the code but a problem that arises when using spyder to run a GUI, thus could not be rectified. It is likely that in another application this would not be an issue, although this has not been tested. Nonetheless, this isssue is nothing more than a minor inconvenience and does not cause any problems.
 
-Finally, while this is not necessarily an issue, there is some inconvenience when running the model in the GUI. To run the model in a GUI, the Spyder IPython console should to be set to Tkinter. To do this, the backend of the IPython console should be changed to TKinter. To do this on spyder go to tools > Ipython console > graphics > backend > TKinter. The console then has to be restarted to run the model in the GUI. The TKinter backend also produces a few issues within the IPython console such as slowing down the programme or not running the code. Mostly, this can be rectified by running "%gui tk" through the console. The model can be run without the GUI to avoid some of this inconvenience using the automatic backend and commenting out lines ... to ... and commenting in lines ... to ... This opens the animation in a seperate window that should run the model automatically.
+Finally, while this is not necessarily an issue, there is some inconvenience when running the model in the GUI. To run the model in a GUI, the Spyder IPython console should to be set to Tkinter. To do this, the backend of the IPython console should be changed to TKinter. To do this on spyder go to tools > Ipython console > graphics > backend > TKinter. The console then has to be restarted to run the model in the GUI. The TKinter backend also produces a few issues within the IPython console such as slowing down the programme or not running the code. Mostly, this can be rectified by running "%gui tk" through the console. The model can be run without the GUI to avoid some of this inconvenience by using the automatic backend and commenting out lines ... to ... and commenting in lines ... to ... This opens the animation in a seperate window that should run the model automatically.
 
 ### Model testing
 
