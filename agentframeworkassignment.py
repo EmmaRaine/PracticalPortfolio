@@ -8,9 +8,9 @@ Created on Sun Apr 25 11:17:26 2021
 
 import random
 
-# The following code sets up an agent class using the init method to defines agent attributes.
+# The following code sets up an agent class using the init method to define agent attributes.
 # All object methods require a parameter label to assign to the object; this is self label and essentially means that those 
-# x and y values belong to that class.
+# x and y values belong to the agent class.
 
 class Agent():
     def __init__(self, environment, agents, y, x):
@@ -24,8 +24,9 @@ class Agent():
         # the parameters for this are set as the environment length.
         self._x = random.randint(0, len(environment[0])) 
         self._y = random.randint(0, len(environment))
-        # Create a for-loop indicating that when x and y variables are equal to none, then the agent location can be determined by
-        # the parameters set out above.
+        # Create a for-loop indicating to control and condition agent coordinates. Here, when x and y variables are equal 
+        # to none, then the agent location can be determined using the randint() function to assign floating values
+        # to the coordinates between 0 and the length of the environment (300).
         if (x == None):
             self._x = random.randint(0, len(environment[0]))
         else:
@@ -36,19 +37,19 @@ class Agent():
             self._y = y
 
 
-# The following code makes a move() method within the Agent class. The code will randomly alter the self._x and self._y coordinates 
-# using control flow (if-else) statements. The if statement contains a block of code that evaluates a condition and makes a choice. 
-# An else statement contains the block of code that executes, if the condition in the if statement is not met.
+# The following code creates a move() function within the Agent class. The code will randomly alter the self._x and 
+# self._y coordinates using control flow (if-else) statements, which will allow agents to randomly move around the environment.
+# The if statement contains a block of code that evaluates a condition and makes a choice. An else statement contains the 
+# block of code that executes, if the condition in the if statement is not met.
 
 # If the store of each agent is less than 500, this code will generate a random floating number between 0 and 1 using the 
-# random.random() function from the random module. The code should randomly move the coordinates 2 steps depending on which conditions 
-# are met; if random.random() is less than 0.5 self.x/self.y coordinates will increase by 2 and if random.random() is greater than 0.5
-# self.x/self.y coordiantes will decrease by 2. 
+# random.random() function from the random module. The code should randomly move the coordinates 2 steps depending on which 
+# conditions are met; if random.random() is less than 0.5 self._x/self._y coordinates will increase by 2 and if random.random()
+# is greater than 0.5 self._x/self._y coordiantes will decrease by 2. 
 
 # To deal with boundary issues, a common solution is to allow points leaving the top of an area to come in at the bottom and leaving 
-# left, come in on the right (making the space into a Torus). The following code uses the modulus operator (%) which gives and 
-# plots the remainder of a division, to ensure agents don't go missing. This is set to 300, the size of the environment to ensure agents
-# cannot go missing out of the environment.
+# left, come in on the right (making the space into a Torus). The following code uses the modulus operator (%) to ensure agents 
+# don't go missing. This is set to 300, the size of the environment to ensure agents cannot move out of the environment.
 
     def move(self):
         if self.store < 500:
@@ -82,7 +83,7 @@ class Agent():
                 self._y = (self._y - 5) % 300
                 
                       
-# The following code makes an eat() method within the Agent class that allows the agents to edit the environment.
+# The following code creates an eat() function within the Agent class that allows the agents to edit the environment.
 
 # When self._x and self._y are greater than 10, the agents will eat the environment (environment will lose 10). This should be
 # added to the agents store. 
@@ -93,7 +94,8 @@ class Agent():
             self.store += 10
 
 
-# The following code creates a function to check the agents stores. 
+# The following code creates a full() function to check the agents stores, within the Agent class. 
+
 # Create a for-loop that changes the 'full' variable when agents have a certain amount of food in their stores. 
 
     def full(self):
@@ -104,19 +106,20 @@ class Agent():
         return full
 
 
-# The following code calculates the euclidean/straight-line distance between the agents using pythagoras theorem.
+# The following code creates a distance_between() function, within the Agent class which calculates the euclidean/straight-line 
+# distance between the agents using pythagoras theorem.
 
     def distance_between(self, agent):
         return (((self._x - agent._x)**2) + ((self._y - agent._y)**2))**0.5
     
     
 # The following code makes a share_with_neighbours() function within the Agent class allowing agents to share their food stores. 
-# This code will allow the agent to call upon the function to check their neighbourhood; essentially, this will allow the agent to search 
-# for close neighbours and share resources with them.
+# This code will allow the agent to call upon the function to check their neighbourhood; essentially, this will allow the 
+# agent to search for close neighbours and share resources with them.
 
     def share_with_neighbours(self, neighbourhood):
-        # Create a for-loop that calls upon the distance_between() function to search for nearby neighbours. Store this in a new variable:
-        # dist.
+        # Create a for-loop that calls upon the distance_between() function to search for nearby neighbours. Store this in 
+        # a new variable: dist.
         for agent in self.agents:
             dist = self.distance_between(agent)
             # If the distance between the agents is less than or equal to the neighbourhood (defined in the model):
@@ -132,7 +135,9 @@ class Agent():
                 #print("sharing " + str(dist) + " " + str(average))
                           
                 
-# The following three blocks of code implements a property attribute for each of the coordinates, using appropriate set and get methods.          
+# The following three blocks of code implements a property attribute for each of the coordinates, using appropriate set 
+# and get methods.
+          
 # The following code sets the propery x and y. 
                  
     @property        

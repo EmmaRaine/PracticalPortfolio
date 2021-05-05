@@ -115,7 +115,7 @@ print(td_xs)
 # (for i in range), using the num_of_agents variable to determine the number of coordinates in the list.
 for i in range(num_of_agents):
     # Initialise agent coordinates using data from the web. As web data only contains values between 0 and 100, this has to be 
-    # multiplied by 3 to ensure agents are assigned values between 0 and 300, the size of the envrionment data.
+    # multiplied by 3 to ensure agents are assigned values between 0 and 300, the size of the envrionment.
     y = int((td_ys[i].text)*3)
     x = int((td_xs[i].text)*3)
     # The code will use the agents.append function to add these sets of coordinates to the empty agents list. At this point the 
@@ -131,13 +131,14 @@ print(a._y, a._x)
 # printed above.
 a.move()
 print(a._y, a._x)
-# Test the eat() method defined in the af file to ensure it links properly to this model.This should print the same values as the move() 
-# method above.
+# Test the eat() method defined in the af file to ensure it links properly to this model.This should print the same values as the 
+# move() method above.
 a.eat()
 print(a._y, a._x)
 
 
-# Define figure size and axes which, later in the model, should set figure parameters for plotting data in the GUI. 
+# Create two new variables that define figure size and axes which, later in the model, should set figure parameters 
+# for plotting the animation. 
 fig = plt.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
 
@@ -150,8 +151,8 @@ carry_on = True
 # Create a new function (update) to set the model up for animation, defined by the number of frames. This function should
 # essentially give the model some behvaiour by randomly altering self._x and self._y coordinates.
 def update(frame_number):
-    # Call the global variable carry_on within the function. This is set as true as defined outside the function and remains
-    # true until the model reaches a stopping condition.
+    # Call the global variable carry_on within the function. This is set as true as defined outside the function to allow
+    # the model to continue running. This remains true until the model reaches a stopping condition.
     global carry_on 
     # Clear the figure before plotting the animation.
     fig.clear()  
@@ -159,12 +160,14 @@ def update(frame_number):
     agent_count = 0 
     
     if True: 
-        # Pseudo-randomly shuffle the order in which agents are processed to reduce model artifacts (patterns or errors in the way 
-        # the model runs).
+        # Pseudo-randomly shuffle the order in which agents are processed to reduce model artifacts (patterns or errors in 
+        # the way the model runs).
         random.shuffle (agents)
-        # Create a for-loop to give the agents (sheep) some behaviour by calling on the move, move_faster, eat and share_with_neighbours 
-        # functions set out in agentframework. This executes the control statements once for each agent in the list. This should move the
-        # sheep around the environment and depending on their stores will allow them to execute behaviours defined in agentframework.
+        # Create a for-loop to give the agents (sheep) some behaviour by calling on the move, move_faster, eat and 
+        # share_with_neighbours functions defined in agentframework. This executes the control statements for each as defined
+        # by for i in range(num_of_agents).
+        # This should move the sheep around the environment, interact with other agents and interact with
+        # the environment.
         for i in range(num_of_agents):
             agents[i].move()
             agents[i].move_faster()
@@ -174,8 +177,8 @@ def update(frame_number):
         # Still within the update function, create a second for-loop to initiate a stopping function that will stop the animation
         # when all of the agents (sheep) have a certain amount of food in their stores. 
         for i in range(num_of_agents):
-            # Create a new variable (eaten_enough) and set this as the  full() function to test whether the sheep have eaten 
-            # enough food. 
+            # Create a new variable (eaten_enough) and set this as the full() function defined in agentframework to test 
+            # whether the sheep have enough food in their stores. 
             eaten_enough = agents[i].full()
             # If eaten_enough is equal to one, indicating sheep are full, add 1 to the agent_count variable.
             if eaten_enough == 1:
@@ -183,8 +186,8 @@ def update(frame_number):
                 # Test this works by printing the stores of each agent once they are full. This should equal around 1000, as set
                 # out in the agentframework file.
                 print("Agent", agents[i], "is full, their store is: {}".format(agents[i].store))
-        # Once agent_count is equal to the num_of_agents, indicating the each agents stores are full, set carry_on to false to stop 
-        # the animation and print a stopping condition.
+        # Once agent_count is equal to the num_of_agents, indicating that each agent has enough food in their stores, set 
+        # carry_on to false to stop the animation and print a stopping condition.
         if agent_count == (num_of_agents):
             carry_on = False
             print("stopping condition")
@@ -195,14 +198,15 @@ def update(frame_number):
     plt.ylim(0, len(environment[0]))
     plt.xlim(0, len(environment))
     # Add a title to the animation.
-    plt.title("Agent-based Model of Sheep Moving within an Environment")
+    plt.title("Agent-based Model of Sheep Behaviour within the Environment")
     # Add x and y-labels to the axes.
     plt.ylabel("Environment")
     plt.xlabel("Environment")
     # Plot the agents in the environment using a scatter plot. Set the size of the points to 50. 
-    # Create a for-loop so that agents with stores less than 500 should be blue and agents with stores greater than 500 should be red. 
-    # Here, the y-coordinate will be referred to as agents[i]._y and the x-coordinate will be referred to as agents[i]._x as each agent 
-    # can be referred to, simply, as agents[i].
+    # Create a for-loop so that agents with stores less than 500 should be blue and agents with stores greater than 500
+    # should be red. 
+    # Here, the y-coordinate will be referred to as agents[i]._y and the x-coordinate will be referred to as agents[i]._x as 
+    # each agent can be referred to, simply, as agents[i].
     for i in range(num_of_agents):
         if agents[i].store < 500:
             plt.scatter(agents[i]._x,agents[i]._y, color='blue', s=50) 
@@ -214,30 +218,30 @@ def update(frame_number):
 print (agents[i]._y, agents[i]._x)                     
 
 
-# The following code creates a generator function that loops the animation until num_of_iterations and the stopping condition have been 
-# met/initialised.
+# The following code creates a generator function that loops the animation until num_of_iterations and the stopping condition
+# have been met/initialised.
 def gen_function(b = [0]):
     a = 0
     # The next line of code is not actually needed as the carry_on variable has already been assigned. Nonetheless, it is clearer
-    # to include this as it identifies that the model will continue to run while the carry_on variable is true.
+    # to include this as it identifies that the model will continually run while the carry_on variable is true.
     global carry_on 
     while (a < num_of_iterations) & (carry_on) :
         yield a			# Returns control and awaits next call.
         a += 1               
     
 
-# Lines 232-233 set up and show the animation. This should be uncommented if the user does not want to run the model
-# in a GUI, although to do this lines 10-18 should be commented out using the '#' symbol, and any code after line 233 should
-# also be commented out
+# Lines 232-233 set up and show the animation using the matplotlib animation module. This should be uncommented if the 
+# user does not want to run the modelin a GUI, although to do this lines 10-18 should be commented out using the
+# '#' symbol, and any code after line 233 should also be commented out.
 #animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
 #plt.show()
 
 
-# The following code creates a function (run) to run an animation. This uses the FuncAnimation function in the animation module to create an 
-# animation by repeatedly calling upon the update function. This uses the generator function to pass data in each frame of the animation
-# and sets the canvas size to the pre-defined figure size. 
-# canvas.draw() from the tkinter function is used to draw this animation within the canvas. The animation should stop running when the 
-# sequence of frames is complete as repeat is set to False. 
+# The following code creates a function (run) to run the animation. This uses the FuncAnimation function in the 
+# animation module to create an animation by repeatedly calling upon the update function. This uses the generator function
+# to pass data in each frame of the animation and sets the canvas size to the pre-defined figure size. 
+# canvas.draw() from the tkinter function is used to draw this animation within the canvas. The animation should stop running
+# when the sequence of frames is complete as repeat is set to False. 
 def run():
     animation = anim.FuncAnimation(fig, update, frames=gen_function, repeat=False)
     canvas.draw()
@@ -246,7 +250,7 @@ def run():
 # The following code builds the main GUI window by creating a new variable: root, which is where the animation should be displayed. 
 root = tkinter.Tk()
 # Give the GUI window a title.
-root.wm_title("Agent-based Model of Sheep Moving within an Environment")
+root.wm_title("Agent-based Model of Sheep Behaviour within the Environment")
 # Lay out a matplotlib canvas to be embedded within the GUI window using the figure parameters set out earlier in the model.
 canvas = mpl.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
 canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
@@ -272,7 +276,7 @@ end = time.time()
 print("time = " + str(end - start))
 
 
-# Create a qutting function that will stop the code running when the GUI window is closed. This can be done before the animation
+# Create an exiting function that will stop the code running when the GUI window is closed. This can be done before the animation
 # has reached it's stopping condition, as well as when the animation has finished running.    
 def exit():
     root.quit()
@@ -280,8 +284,8 @@ def exit():
 root.protocol('WM_DELETE_WINDOW', exit)
 
 
-# This final line of code sets the GUI waiting for events and should allow the GUI to run the model effectively. This line of code must
-# go at the very end.
+# This final line of code sets the GUI waiting for events and should allow the GUI to run the model effectively. This line of code 
+# must go at the very end.
 tkinter.mainloop()
 
 
